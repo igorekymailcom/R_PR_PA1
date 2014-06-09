@@ -17,13 +17,12 @@ pollutantmean <- function(directory, pollutant, id = 1:332) {
    for(i in id) {
     filename<- sprintf("%s/%03d.csv", directory,as.numeric(i)) 
     ##print(filename);
-    data <- read.csv( filename,header = TRUE,sep = ",",quote = "\"",dec = ".")
-    
-    MyData <- rbind(data)
-    
+    dat <- read.csv2( filename,header = TRUE,sep = ",",quote = "\"",dec = ".")
+    MyData <-rbind(dat,MyData)
+    MyData <- data.frame(MyData)
    }
    ## print(MyData)
-   print(MyData[, pollutant])
+   ##print(MyData)
    mean(MyData[,pollutant],na.rm=TRUE)
   
 }
